@@ -1,0 +1,113 @@
+#results {
+    background-color: #f8f8f8;
+}
+
+.movies__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .filters {
+    display: flex;
+  }
+  
+  .range__container {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+  
+  .range__title {
+    position: absolute;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 700;
+    color: #242424;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .range__slider {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 10px;
+    max-width: 448px;
+  }
+  
+  .range__slider input {
+    border: none;
+    outline: none;
+    background-color: #dbdbdb;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 4px 2px;
+    border-radius: 5px;
+  }
+  
+  .range {
+    width: 100%;
+    display: grid;
+    position: relative;
+    z-index: 5;
+  }
+  
+  .range input {
+    grid-row: 2;
+    grid-column: 1;
+    pointer-events: none;
+    appearance: none;
+    background: transparent;
+  }
+  
+  .range input::-webkit-slider-thumb {
+    pointer-events: auto;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 1px solid #242424;
+    border-radius: 50%;
+    background-color: #cccccc;
+    cursor: pointer;
+    transition: all 200ms ease;
+  }
+  .range input::-webkit-slider-thumb:hover {
+    background-color: #ff9898;
+    transform: scale(1.1);
+  }
+  .range input::-webkit-slider-thumb:active {
+    transform: scale(0.9);
+  }
+  
+  .slider {
+    position: absolute;
+    height: 10px;
+    width: 100%;
+    background-color: #dbdbdb;
+    top: 50%;
+    transform: translateY(-50%);
+    border-radius: 5px;
+    overflow: hidden;
+    z-index: -1;
+  }
+  
+  .progress {
+    position: absolute;
+    height: 100%;
+    background-color: #8f8fff;
+  }
+  
+  .filter {
+    margin: 24px 0 24px 36px;
+    padding: 2px 8px;
+    border: none;
+    background-color: #dbdbdb;
+    color: #242424;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    border-radius: 5px;
+    text-align: center;
+  }

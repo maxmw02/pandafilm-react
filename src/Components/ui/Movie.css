@@ -1,0 +1,41 @@
+.movie__list {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.movie__wrapper {
+  width: calc(100% / 3);
+  display: flex;
+}
+
+.movie {
+  padding: 12px;
+}
+
+.movie__img--wrapper {
+  display: flex;
+  width: 100%;
+}
+
+.movie__img {
+  width: 100%;
+}
+
+.movie__description {
+  display: flex;
+  flex-direction: column;
+}
+
+.movie__title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #242424;
+}
+
+.movie__year,
+.movie__imdbID {
+  font-size: 18px;
+  font-weight: 700;
+  color: #535353;
+}
