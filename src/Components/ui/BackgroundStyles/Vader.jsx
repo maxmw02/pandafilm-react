@@ -1,12 +1,13 @@
-import React from 'react'
-import BackgroundTemp from './BackgroundTemp'
-import vader from "../../../assets/vader-background.jpg"
-import "./Vader.css"
+import React from "react";
+import "./Vader.css";
+import vader from "../../../assets/vader-background.jpg";
 
 function Vader() {
-    return (
-        <BackgroundTemp img={vader} />
-    )
+  return (
+    <figure className="vader__wrapper">
+      <img src={vader} alt="" className="vader" />
+    </figure>
+  );
 }
 
-export default Vader
+export default Vader;
