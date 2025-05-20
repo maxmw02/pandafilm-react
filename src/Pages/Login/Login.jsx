@@ -7,6 +7,8 @@ import Shawshank from "../../Components/ui/BackgroundStyles/Shawshank";
 import Sniper from "../../Components/ui/BackgroundStyles/Sniper";
 import Wallace from "../../Components/ui/BackgroundStyles/Wallace";
 import { login, signup } from "../../firebase";
+import { useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function Login() {
   const [signState, setSignState] = useState("Sign In");
@@ -15,13 +17,20 @@ function Login() {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
 
+  const navigate = useNavigate();
+
   const user_auth = async (event) => {
     event.preventDefault();
     setLoading(true);
-    if (signState === "Sign In") {
-      await login(email, password);
-    } else {
-      await signup(name, email, password);
+    try {
+      if (signState === "Sign In") {
+        await login(email, password);
+      } else {
+        await signup(name, email, password);
+      }
+      navigate("/");
+    } catch (error) {
+      console.error("Authentication error:", error);
     }
     setLoading(false);
   };
@@ -36,83 +45,89 @@ function Login() {
         <Sniper />
         <Wallace />
       </div>
-      <div className="login">
-        <div className="login__form">
-          <h1 className="login__title">{signState}</h1>
-          <form>
-            {signState === "Sign Up" ? (
+      {loading ? (
+        <div className="login__loader">
+          <FontAwesomeIcon icon="spinner" />
+        </div>
+      ) : (
+        <div className="login">
+          <div className="login__form">
+            <h1 className="login__title">{signState}</h1>
+            <form>
+              {signState === "Sign Up" ? (
+                <input
+                  type="text"
+                  placeholder="Your Name"
+                  value={name}
+                  onChange={(event) => {
+                    setName(event.target.value);
+                  }}
+                />
+              ) : (
+                <></>
+              )}
               <input
-                type="text"
-                placeholder="Your Name"
-                value={name}
+                type="email"
+                placeholder="Your Email"
+                value={email}
                 onChange={(event) => {
-                  setName(event.target.value);
+                  setEmail(event.target.value);
                 }}
               />
-            ) : (
-              <></>
-            )}
-            <input
-              type="email"
-              placeholder="Your Email"
-              value={email}
-              onChange={(event) => {
-                setEmail(event.target.value);
-              }}
-            />
-            <input
-              type="password"
-              placeholder="Your Password"
-              value={password}
-              onChange={(event) => {
-                setPassword(event.target.value);
-              }}
-            />
-            <button type="submit" onClick={user_auth} className="submit">
-              {signState}
-            </button>
-            <div className="form__help">
-              <div className="remember">
-                <input type="checkbox" />
-                <label htmlFor="">Remember Me</label>
+              <input
+                type="password"
+                placeholder="Your Password"
+                value={password}
+                onChange={(event) => {
+                  setPassword(event.target.value);
+                }}
+              />
+              <button type="submit" onClick={user_auth} className="submit">
+                {signState}
+              </button>
+              <div className="form__help">
+                <div className="remember">
+                  <input type="checkbox" />
+                  <label htmlFor="">Remember Me</label>
+                </div>
+                <p>Need Help?</p>
               </div>
-              <p>Need Help?</p>
+            </form>
+            <div className="form__lower">
+              <div className="form__switch">
+                {signState === "Sign In" ? (
+                  <p>
+                    New to PandaFlim?{" "}
+                    <span
+                      onClick={() => {
+                        setSignState("Sign Up");
+                      }}
+                    >
+                      Sign Up Now
+                    </span>
+                  </p>
+                ) : (
+                  <p>
+                    Already have an Account?{" "}
+                    <span
+                      onClick={() => {
+                        setSignState("Sign In");
+                      }}
+                    >
+                      Sign In Now
+                    </span>
+                  </p>
+                )}
+              </div>
+              <a className="home" href="/">
+                Home
+              </a>
             </div>
-          </form>
-          <div className="form__lower">
-            <div className="form__switch">
-              {signState === "Sign In" ? (
-                <p>
-                  New to PandaFlim?{" "}
-                  <span
-                    onClick={() => {
-                      setSignState("Sign Up");
-                    }}
-                  >
-                    Sign Up Now
-                  </span>
-                </p>
-              ) : (
-                <p>
-                  Already have an Account?{" "}
-                  <span
-                    onClick={() => {
-                      setSignState("Sign In");
-                    }}
-                  >
-                    Sign In Now
-                  </span>
-                </p>
-              )}
-            </div>
-            <a className="home" href="/">Home</a>
           </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }
 
 export default Login;
-
-

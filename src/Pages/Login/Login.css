@@ -111,3 +111,24 @@ button:active {
   color: #fff;
   cursor: pointer;
 }
+
+.login__loader {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.fa-spinner {
+  width: 50px;
+  height: 50px;
+  animation: spin 600ms infinite linear;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
