@@ -7,7 +7,7 @@ function Movie() {
 
   async function fetchMovies() {
     const { data } = await axios.get(
-      "http://www.omdbapi.com/?apikey=84eb025a&s=fast"
+      "https://www.omdbapi.com/?apikey=84eb025a&s=fast"
     );
     const movieData = data.Search;
     setMovies(movieData);

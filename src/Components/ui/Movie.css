@@ -25,6 +25,7 @@
 .movie__description {
   display: flex;
   flex-direction: column;
+  margin-top: 4px;
 }
 
 .movie__title {

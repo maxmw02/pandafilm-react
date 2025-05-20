@@ -3,6 +3,9 @@ import "./SearchBar.css"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function SearchBar({ background }) {
+
+
+
   return (
     <div>
       {background}
