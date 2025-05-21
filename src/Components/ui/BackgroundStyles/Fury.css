@@ -1,0 +1,28 @@
+.fury__wrapper {
+    display: flex;
+    width: 50%;
+    border-bottom: 2px  solid #000;
+    border-right: 1px solid #000;
+  }
+
+.fury {
+  display: flex;
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  object-position: 0 65%;
+  filter: grayscale(35%);
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 45%,
+    #000 55%,
+    transparent
+  );
+}
+
+@media (min-width: 1480px) {
+    .fury__wrapper {
+      border-left: 2px solid #000;
+    }
+  }

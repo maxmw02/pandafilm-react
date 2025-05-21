@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./Movie.css";
+import { movieData } from '../SearchBar/SearchBar'
 
 function Movie() {
   const [movies, setMovies] = useState([]);
@@ -20,19 +21,21 @@ function Movie() {
 
   return (
     <div className="movie__list">
-      {movies.map((movie) => (
-        <div className="movie__wrapper">
-          <div className="movie" key={movie.imdbID}>
-            <figure className="movie__img--wrapper">
-              <img className="movie__img" src={movie?.Poster} alt="" />
-            </figure>
-            <div className="movie__description">
-              <div className="movie__title">{movie?.Title}</div>
-              <div className="movie__year">{movie?.Year}</div>
+      {movies
+        .map((movie) => (
+          <div className="movie__wrapper" key={movie.imdbID}>
+            <div className="movie">
+              <figure className="movie__img--wrapper">
+                <img className="movie__img" src={movie?.Poster} alt="" />
+              </figure>
+              <div className="movie__description">
+                <div className="movie__title">{movie?.Title}</div>
+                <div className="movie__year">{movie?.Year}</div>
+              </div>
             </div>
           </div>
-        </div>
-      )).slice(0, 9)}
+        ))
+        .slice(0, 9)}
     </div>
   );
 }

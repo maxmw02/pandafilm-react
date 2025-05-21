@@ -64,9 +64,13 @@ form {
   font-weight: 500px;
   margin-top: 20px;
   cursor: pointer;
+  transition: all 200ms ease;
 }
-button:active {
+.login__form button:active {
   transform: scale(0.99);
+}
+.login__form button:hover {
+  background: #ff6969;
 }
 
 .form__help {

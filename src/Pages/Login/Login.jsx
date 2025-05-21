@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from "react";
 import "./Login.css";
+import { login, signup, auth } from "../../firebase";
+import { useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Rocky from "../../Components/ui/BackgroundStyles/Rocky";
 import Martian from "../../Components/ui/BackgroundStyles/Martian";
 import Dune from "../../Components/ui/BackgroundStyles/Dune";
 import Shawshank from "../../Components/ui/BackgroundStyles/Shawshank";
 import Sniper from "../../Components/ui/BackgroundStyles/Sniper";
 import Wallace from "../../Components/ui/BackgroundStyles/Wallace";
-import { login, signup } from "../../firebase";
-import { useNavigate } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Interstellar from "../../Components/ui/BackgroundStyles/Interstellar";
+import Jones from "../../Components/ui/BackgroundStyles/Jones";
+import Fury from "../../Components/ui/BackgroundStyles/Fury";
 
 function Login() {
   const [signState, setSignState] = useState("Sign In");
@@ -28,7 +31,7 @@ function Login() {
       } else {
         await signup(name, email, password);
       }
-      navigate("/");
+      // navigate("/")
     } catch (error) {
       console.error("Authentication error:", error);
     }
@@ -44,6 +47,9 @@ function Login() {
         <Shawshank />
         <Sniper />
         <Wallace />
+        <Interstellar />
+        <Jones />
+        <Fury />
       </div>
       {loading ? (
         <div className="login__loader">

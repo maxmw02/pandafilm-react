@@ -1,0 +1,29 @@
+.jones__wrapper {
+    display: flex;
+    width: 50%;
+    border-bottom: 2px solid #000;
+    border-left: 1px solid #000;
+  }
+  
+  .jones {
+    display: flex;
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    object-position: 0 35%;
+    filter: grayscale(90%);
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      #000 40%,
+      #000 65%,
+      transparent
+    );
+  }
+  
+    
+  @media (min-width: 1480px) {
+      .jones__wrapper {
+        border-right: 2px solid #000;
+      }
+    }

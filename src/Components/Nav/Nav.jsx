@@ -1,13 +1,20 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import logo from "../../assets/PandaFilm.png";
 import "./Nav.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useUserStore } from "../../useStore";
+import { auth } from "../../firebase";
+
 
 function Nav() {
 
-  const currentUser = useUserStore()
-  console.log(currentUser)
+const [user, setUser] = useState(null)
+
+useEffect(() => {
+  auth.onAuthStateChanged(async (user) => {
+    setUser(user)
+    console.log(user)
+  })
+}, [])
 
   return (
     <nav>
@@ -35,7 +42,7 @@ function Nav() {
               </li>
               <li className="nav__link click">
                 <a href="/login" className="nav__link--anchor nav__link--main">
-                  
+                  {user ? user.email[0].toUpperCase() : "Login"}
                 </a>
               </li>
             </ul>
