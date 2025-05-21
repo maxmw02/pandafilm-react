@@ -2,18 +2,9 @@ import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import "./SearchBar.css";
+import { useNavigate } from "react-router-dom";
 
-function SearchBar({ background }) {
-  const [movieSearch, setMovieSearch] = useState("");
-
-  async function fetchMovies() {
-    const { data } = await axios.get(
-      `https://www.omdbapi.com/?apikey=84eb025a&s=${movieSearch}`
-    );
-    const movieData = data.Search
-    return movieData
-  }
-
+function SearchBar({ background, fetchMovies, setMovieSearch, movieSearch }) {
 
   return (
     <div>
@@ -28,7 +19,7 @@ function SearchBar({ background }) {
             value={movieSearch}
             onChange={(event) => setMovieSearch(event.target.value)}
           />
-          <button className="search__btn click" onClick={() => fetchMovies()}>
+          <button className="search__btn click" onClick={fetchMovies}>
             <FontAwesomeIcon icon="magnifying-glass" />
           </button>
         </div>

@@ -1,15 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import SearchBar from "../../Components/SearchBar/SearchBar";
 import Nav from "../../Components/Nav/Nav";
 import Results from "../../Components/Results/Results";
 import Footer from "../../Components/Footer/Footer";
 import Vader from "../../Components/ui/BackgroundStyles/Vader";
+import axios from "axios";
 
 function Search() {
+
+  const [movieSearch, setMovieSearch] = useState("");
+
+  async function fetchMovies() {
+    const { data } = await axios.get(
+      `https://www.omdbapi.com/?apikey=84eb025a&s=${movieSearch}`
+    );
+    const movieData = data.Search;
+    console.log(movieData)
+  }
   return (
     <div>
       <Nav />
-      <SearchBar background={<Vader />}/>
+      <SearchBar background={<Vader />} setMovieSearch={setMovieSearch} fetchMovies={fetchMovies}/>
       <Results />
       <Footer />
     </div>
