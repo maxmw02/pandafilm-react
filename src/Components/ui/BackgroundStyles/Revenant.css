@@ -1,29 +1,28 @@
-.jones__wrapper {
+.revenant__wrapper {
     display: flex;
     width: 50%;
     border-bottom: 2px solid #000;
     border-left: 1px solid #000;
   }
   
-  .jones {
+  .revenant {
     display: flex;
     width: 100%;
     height: calc(100vh / 6);
     object-fit: cover;
     object-position: 0 35%;
-    filter: grayscale(90%);
+    filter: grayscale(60%);
     mask-image: linear-gradient(
       to right,
       transparent,
-      #000 40%,
-      #000 65%,
+      #000 22%,
+      #000 37%,
       transparent
     );
   }
   
-    
   @media (min-width: 1480px) {
-      .jones__wrapper {
-        border-right: 2px solid #000;
-      }
+    .revenant__wrapper {
+      border-right: 2px solid #000;
     }
+  }

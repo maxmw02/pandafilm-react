@@ -1,25 +1,18 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import "./Movie.css";
-import { movieData } from '../SearchBar/SearchBar'
+import undraw from "../../assets/undraw-movie.svg";
 
-function Movie() {
-  const [movies, setMovies] = useState([]);
+function Movie({ movies, fetchMovies }) {
+  const [moviesExist, setMoviesExist] = useState(true);
 
-  async function fetchMovies() {
-    const { data } = await axios.get(
-      "https://www.omdbapi.com/?apikey=84eb025a&s=fast"
-    );
-    const movieData = data.Search;
-    setMovies(movieData);
-    console.log(movieData);
-  }
 
-  useEffect(() => {
-    fetchMovies();
-  }, []);
+  useEffect (() => {
+    if (!movies || movies.length === 0) {
+      setMoviesExist(false);
+    }
+  }, [])
 
-  return (
+  return moviesExist ? (
     <div className="movie__list">
       {movies
         .map((movie) => (
@@ -36,6 +29,11 @@ function Movie() {
           </div>
         ))
         .slice(0, 9)}
+    </div>
+  ) : (
+    <div className="search__again">
+      <img src={undraw} alt="" />
+      <h2 className="search__again--title">Try a Search!</h2>
     </div>
   );
 }

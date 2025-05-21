@@ -12,6 +12,9 @@ import Wallace from "../../Components/ui/BackgroundStyles/Wallace";
 import Interstellar from "../../Components/ui/BackgroundStyles/Interstellar";
 import Jones from "../../Components/ui/BackgroundStyles/Jones";
 import Fury from "../../Components/ui/BackgroundStyles/Fury";
+import Revenant from "../../Components/ui/BackgroundStyles/Revenant";
+import Joker from "../../Components/ui/BackgroundStyles/Joker";
+import Captain from "../../Components/ui/BackgroundStyles/Captain";
 
 function Login() {
   const [signState, setSignState] = useState("Sign In");
@@ -50,6 +53,9 @@ function Login() {
         <Interstellar />
         <Jones />
         <Fury />
+        <Revenant />
+        <Joker />
+        <Captain />
       </div>
       {loading ? (
         <div className="login__loader">

@@ -13,7 +13,7 @@
 .login {
   width: 100%;
   max-width: 450px;
-  position: absolute;
+  position: fixed;
   top: 20%;
   left: 50%;
   transform: translateX(-50%);

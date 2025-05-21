@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Movie from "../ui/Movie";
 import "./Results.css";
 
-function Results() {
+function Results({ movies,fetchMovies }) {
 
   return (
     <section id="results">
@@ -13,7 +13,7 @@ function Results() {
               Search Results
             </h3>
           </div>
-          <Movie />
+          <Movie movies={movies} fetchMovies={fetchMovies}/>
         </div>
       </div>
     </section>

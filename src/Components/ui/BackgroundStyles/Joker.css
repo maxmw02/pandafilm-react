@@ -1,28 +1,28 @@
-.dune__wrapper {
+.joker__wrapper {
     display: flex;
     width: 50%;
     border-bottom: 2px  solid #000;
-    border-right: 1px  solid #000;
+    border-right: 1px solid #000;
   }
 
-.dune {
+.joker {
   display: flex;
   width: 100%;
   height: calc(100vh / 6);
   object-fit: cover;
-  object-position: 0 55%;
-  filter: grayscale(75%);
+  object-position: 0 25%;
+  filter: grayscale(35%);
   mask-image: linear-gradient(
     to right,
     transparent,
-    #000 45%,
-    #000 55%,
+    #000 48%,
+    #000 54%,
     transparent
   );
 }
 
 @media (min-width: 1480px) {
-    .dune__wrapper {
+    .joker__wrapper {
       border-left: 2px solid #000;
     }
   }
