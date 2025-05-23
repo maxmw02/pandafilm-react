@@ -1,20 +1,27 @@
-import React from "react";
-import "./Movie.css";
-import undraw from "../../assets/undraw-movie.svg";
-import noImage from "../../assets/No_Image_Available.jpg";
+import React, { useEffect, useState } from 'react'
+import './SetMovie.css'
+import noImage from '../../assets/No_Image_Available.jpg'
+import axios from 'axios';
 
-function Movie({ movies }) {
+function SetMovie({ setMovie, slice }) {
 
-  if (!movies || movies.length === 0) {
+    const [movies, setMovies] = useState([]);
+
+    async function fetchMovies() {
+      const { data } = await axios.get(
+        `https://www.omdbapi.com/?apikey=84eb025a&s=${setMovie}`
+      );
+      const movieData = data.Search;
+      setMovies(movieData || []);
+      console.log(movieData);
+    }
+
+    useEffect (() => {
+        fetchMovies()
+    }, [])
+
     return (
-      <div className="search__again">
-        <img src={undraw} alt="" />
-        <h2 className="search__again--title">Try a Search!</h2>
-      </div>
-    );
-  } else {
-    return (
-      <div className="movie__list">
+        <div className="movie__list">
         {movies
           .map((movie) => (
             <div className="movie__wrapper" key={movie.imdbID}>
@@ -33,10 +40,9 @@ function Movie({ movies }) {
               </div>
             </div>
           ))
-          .slice(0, 9)}
+          .slice(0, 3)}
       </div>
     );
-  }
 }
 
-export default Movie;
+export default SetMovie

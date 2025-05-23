@@ -43,12 +43,9 @@
 .nav__link--main {
   margin-left: 14px;
   padding: 10px 32px;
-  background-color: #cccccc;
+  background-color: #ff9898;
   color: #242424;
   border: 2px solid #242424;
   border-radius: 50px;
   transition: all 300ms ease;
-}
-.nav__link--main:hover {
-  background-color: #ff9898;
 }

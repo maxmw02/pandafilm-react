@@ -11,6 +11,8 @@ function Search() {
   const [movieSearch, setMovieSearch] = useState("");
   const [movies, setMovies] = useState([])
 
+
+
   async function fetchMovies() {
     const { data } = await axios.get(
       `https://www.omdbapi.com/?apikey=84eb025a&s=${movieSearch}`
@@ -22,8 +24,8 @@ function Search() {
   return (
     <div>
       <Nav />
-      <SearchBar background={<Vader />} setMovieSearch={setMovieSearch} fetchMovies={fetchMovies}/>
-      <Results movies={movies} fetchMovies={fetchMovies}/>
+      <SearchBar background={<Vader />} setMovieSearch={setMovieSearch} fetchMovies={fetchMovies} />
+      <Results movies={movies} fetchMovies={fetchMovies} />
       <Footer />
     </div>
   );

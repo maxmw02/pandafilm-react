@@ -1,11 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import axios from "axios";
 import "./SearchBar.css";
-import { useNavigate } from "react-router-dom";
 
 function SearchBar({ background, fetchMovies, setMovieSearch, movieSearch }) {
-
   return (
     <div>
       {background}
@@ -18,6 +15,9 @@ function SearchBar({ background, fetchMovies, setMovieSearch, movieSearch }) {
             placeholder="Search..."
             value={movieSearch}
             onChange={(event) => setMovieSearch(event.target.value)}
+            onKeyUp={(event) => {
+              if (event.key === "Enter") fetchMovies(event.target.value);
+            }}
           />
           <button className="search__btn click" onClick={fetchMovies}>
             <FontAwesomeIcon icon="magnifying-glass" />

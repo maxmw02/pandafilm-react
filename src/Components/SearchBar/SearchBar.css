@@ -9,9 +9,12 @@
 .search__title {
   font-size: 32px;
   font-weight: 700;
-  color: #cccccc;
+  color: #e9e9e9;
   letter-spacing: 2px;
   z-index: 1;
+  text-shadow: 0.05em 0 black, 0 0.05em black, -0.05em 0 black, 0 -0.05em black,
+    -0.05em -0.05em black, -0.05em 0.05em black, 0.05em -0.05em black,
+    0.05em 0.05em black;
 }
 
 .search__bar {
@@ -41,5 +44,5 @@
   transition: all 200ms ease;
 }
 .search__btn:hover {
-    color: #ff9898;
+  color: #ff9898;
 }
