@@ -4,23 +4,10 @@ import Nav from "../../Components/Nav/Nav";
 import Results from "../../Components/Results/Results";
 import Footer from "../../Components/Footer/Footer";
 import Vader from "../../Components/ui/BackgroundStyles/Vader";
-import axios from "axios";
-
-function Search() {
-
-  const [movieSearch, setMovieSearch] = useState("");
-  const [movies, setMovies] = useState([])
 
 
+function Search({ movies, setMovieSearch, fetchMovies }) {
 
-  async function fetchMovies() {
-    const { data } = await axios.get(
-      `https://www.omdbapi.com/?apikey=84eb025a&s=${movieSearch}`
-    );
-    const movieData = data.Search;
-    setMovies(movieData || [])
-    console.log(movieData)
-  }
   return (
     <div>
       <Nav />

@@ -1,30 +1,36 @@
-import React, { useEffect, useState } from 'react'
-import './SetMovie.css'
-import noImage from '../../assets/No_Image_Available.jpg'
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import "./SetMovie.css";
+import noImage from "../../assets/No_Image_Available.jpg";
+import axios from "axios";
+import { Link } from "react-router-dom";
 
-function SetMovie({ setMovie, slice }) {
+function SetMovie({ setHomeMovie, fetchMovieInfo }) {
+  const [homeMovies, setHomeMovies] = useState([]);
 
-    const [movies, setMovies] = useState([]);
+  async function fetchMovies() {
+    const { data } = await axios.get(
+      `https://www.omdbapi.com/?apikey=84eb025a&s=${setHomeMovie}`
+    );
+    const homeMovieData = data.Search;
+    setHomeMovies(homeMovieData);
+    console.log(homeMovieData)
+  }
 
-    async function fetchMovies() {
-      const { data } = await axios.get(
-        `https://www.omdbapi.com/?apikey=84eb025a&s=${setMovie}`
-      );
-      const movieData = data.Search;
-      setMovies(movieData || []);
-      console.log(movieData);
-    }
+  useEffect(() => {
+    fetchMovies();
+  }, []);
 
-    useEffect (() => {
-        fetchMovies()
-    }, [])
-
-    return (
-        <div className="movie__list">
-        {movies
-          .map((movie) => (
-            <div className="movie__wrapper" key={movie.imdbID}>
+  return (
+    <div className="movie__list">
+      {homeMovies
+        .map((movie) => (
+       
+            <Link 
+              to={`/info/${movie.imdbID}`}
+              className="setMovies__wrapper movies__click"
+              key={movie.imdbID}
+              onClick={fetchMovieInfo}
+            >
               <div className="movie">
                 <figure className="movie__img--wrapper">
                   <img
@@ -38,11 +44,12 @@ function SetMovie({ setMovie, slice }) {
                   <div className="movie__year">{movie?.Year}</div>
                 </div>
               </div>
-            </div>
-          ))
-          .slice(0, 3)}
-      </div>
-    );
+            </Link>
+ 
+        ))
+        .slice(0, 3)}
+    </div>
+  );
 }
 
-export default SetMovie
+export default SetMovie;
