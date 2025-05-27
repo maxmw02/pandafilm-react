@@ -8,11 +8,9 @@ import { useState } from "react";
 import axios from "axios";
 
 function App() {
-  const [movieInfo, setMovieInfo] = useState([]);
   const [movieSearch, setMovieSearch] = useState("");
   const [movies, setMovies] = useState([]);
 
-  
   async function fetchMovies() {
     const { data } = await axios.get(
       `https://www.omdbapi.com/?apikey=84eb025a&s=${movieSearch}`
@@ -21,35 +19,27 @@ function App() {
     setMovies(movieData || []);
     console.log(movieData);
   }
-  
-  async function fetchMovieInfo() {
-    const { data } = await axios.get(
-      `https://www.omdbapi.com/?apikey=84eb025a&i=${movies.imdbID}`
-    );
-    const infoData = data.Search;
-    setMovieInfo(infoData || []);
-    console.log(infoData);
-  }
 
-  
+
   return (
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home />} fetchMovieInfo={fetchMovieInfo} />
+          <Route path="/" element={<Home />} />
           <Route
             path="/search"
-            element={<Search />}
-            fetchMovieInfo={fetchMovieInfo}
-            setMovieSearch={setMovieSearch}
-            movies={movies}
-            fetchMovies={fetchMovies}
+            element={
+              <Search
+                setMovieSearch={setMovieSearch}
+                movies={movies}
+                fetchMovies={fetchMovies}
+              />
+            }
           />
           <Route path="/login" element={<Login />} />
           <Route
             path="/info/:id"
             element={<MovieInfo />}
-            movieInfo={movieInfo}
           />
         </Routes>
       </BrowserRouter>
