@@ -1,4 +1,4 @@
-.movie__list {
+.setMovie__list {
     display: flex;
     flex-wrap: wrap;
     width: 100%;
@@ -49,6 +49,17 @@
     font-size: 18px;
     font-weight: 700;
     color: #535353;
+  }
+
+  @media (max-width: 650px) {
+    .setMovie__list {
+      width: 70%;
+    }
+    .setMovies__wrapper {
+      width: 100%;
+      margin-left: 0;
+      margin-bottom: 24px;
+    }
   }
 
 

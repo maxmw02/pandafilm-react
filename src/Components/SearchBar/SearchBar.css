@@ -46,3 +46,20 @@
 .search__btn:hover {
   color: #ff9898;
 }
+
+@media (max-width: 840px) {
+  .search__wrapper {
+    height: 200px;
+  }
+}
+@media (max-width: 650px) {
+  .search__wrapper {
+    height: 150px;
+  }
+  .search__bar {
+    max-width: 300px;
+  }
+  .search__title {
+    font-size: 28px;
+  }
+}

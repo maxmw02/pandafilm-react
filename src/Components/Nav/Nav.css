@@ -42,10 +42,19 @@
 
 .nav__link--main {
   margin-left: 14px;
-  padding: 10px 32px;
+  padding: 10px 24px;
   background-color: #ff9898;
   color: #242424;
   border: 2px solid #242424;
   border-radius: 50px;
   transition: all 300ms ease;
+}
+
+@media (max-width: 550px) {
+  .nav__link:first-child {
+    display: none;
+  }
+  .nav__link:nth-child(2) {
+    display: none;
+  }
 }

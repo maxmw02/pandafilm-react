@@ -28,8 +28,8 @@ function Nav() {
                   Home
                 </a>
               </li>
-              <li className="nav__link click">
-                <a href="#" className="nav__link--anchor link__hover--effect">
+              <li className="nav__link">
+                <a href="#" className="nav__link--anchor">
                   About
                 </a>
               </li>

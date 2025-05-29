@@ -23,3 +23,21 @@
   font-size: 36px;
   color: #242424;
 }
+
+@media (max-width: 650px) {
+  .home__page--title {
+    font-size: 42px;
+  }
+  .movies__section {
+    padding-top: 32px;
+  }
+  .movies__section--title {
+    font-size: 32px;
+    text-align: center;
+  }
+  .setMovie__wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

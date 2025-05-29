@@ -21,3 +21,16 @@
     transparent
   );
 }
+
+@media (max-width: 840px) {
+  .vader {
+    height: 200px;
+  }
+}
+@media (max-width: 650px) {
+  .vader {
+    height: 150px;
+  }
+}
+
+

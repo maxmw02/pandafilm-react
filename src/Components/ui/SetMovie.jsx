@@ -34,7 +34,7 @@ function SetMovie({ setHomeMovie, fetchMovieInfo }) {
     );
   } else {
     return (
-      <div className="movie__list">
+      <div className="setMovie__list">
         {homeMovies
           .map((movie) => (
             <Link
