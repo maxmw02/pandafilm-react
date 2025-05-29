@@ -13,6 +13,7 @@ function Home({ fetchMovieInfo }) {
       <Bane />
       <section id="example__movies">
         <div className="row">
+          <div className="home__page--title">Sample Movies</div>
           <div className="movies__section">
             <h1 className="movies__section--title">The Avengers</h1>
             <div className="setMovie__wrapper">

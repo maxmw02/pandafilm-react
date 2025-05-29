@@ -20,17 +20,16 @@ function PrivateRoutes({ isLoggedIn, setIsLoggedIn }) {
 
   useEffect(() => {
       const unsubscribe = auth.onAuthStateChanged((user) => {
-        const loggedIn = !!user
-        setIsLoggedIn(loggedIn)
+        setIsLoggedIn(!!user)
         
-        if (!isLoggedIn) {
+        if (!user) {
           navigate("/login");
         }
-        localStorage.setItem("isLoggedIn", loggedIn.toString())
+      
       })
 
       return () => unsubscribe()
-  }, [isLoggedIn, navigate]); 
+  }, []); 
 
   return isLoggedIn ? <Outlet /> : null;
 }

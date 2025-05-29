@@ -15,7 +15,7 @@ function Footer() {
           </a>
           <div className="footer__list">
             <a className="footer__link link__hover--effect click" href="/">Home</a>
-            <a className="footer__link link__hover--effect click" href="">Movies</a>
+            <a className="footer__link link__hover--effect click" href="">About</a>
             <a className="footer__link link__hover--effect click" href="/search">Search</a>
             <a className="footer__link link__hover--effect click" href="/login">Login</a>
           </div>

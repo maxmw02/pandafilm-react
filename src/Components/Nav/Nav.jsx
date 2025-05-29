@@ -2,19 +2,17 @@ import React, { useEffect, useState } from "react";
 import logo from "../../assets/PandaFilm.png";
 import "./Nav.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { auth } from "../../firebase";
-
+import { auth, logout } from "../../firebase";
 
 function Nav() {
+  const [user, setUser] = useState(null);
 
-const [user, setUser] = useState(null)
-
-useEffect(() => {
-  auth.onAuthStateChanged(async (user) => {
-    setUser(user)
-    console.log(user)
-  })
-}, [])
+  useEffect(() => {
+    auth.onAuthStateChanged(async (user) => {
+      setUser(user);
+      console.log(user);
+    });
+  }, []);
 
   return (
     <nav>
@@ -36,14 +34,30 @@ useEffect(() => {
                 </a>
               </li>
               <li className="nav__link click">
-                <a href="/search" className="nav__link--anchor link__hover--effect">
-                  <FontAwesomeIcon icon="magnifying-glass"/>
+                <a
+                  href="/search"
+                  className="nav__link--anchor link__hover--effect"
+                >
+                  <FontAwesomeIcon icon="magnifying-glass" />
                 </a>
               </li>
               <li className="nav__link click">
-                <a href="/login" className="nav__link--anchor nav__link--main">
-                  {user ? user.email[0].toUpperCase() : "Login"}
-                </a>
+                {user ? (
+                  <a
+                    href="/login"
+                    onClick={() => {logout()}}
+                    className="nav__link--anchor nav__link--main"
+                  >
+                    Logout
+                  </a>
+                ) : (
+                  <a
+                    href="/login"
+                    className="nav__link--anchor nav__link--main"
+                  >
+                   Login
+                  </a>
+                )}
               </li>
             </ul>
           </div>
