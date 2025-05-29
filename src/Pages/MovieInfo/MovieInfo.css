@@ -16,13 +16,14 @@
     border-top: 2px solid #242424;
     border-bottom: 2px solid #242424;
     background: linear-gradient(to right, #3b3b3b, #cccccc, #ffbcbc);
+    
 }
 
 .movie__info--title {
     color: #242424;
     font-size: 64px;
     font-weight: 700;
-    margin: 24px 0;
+    margin: 24px;
     max-width: 720px;
     text-align: center;
 }
@@ -152,6 +153,9 @@
     #info {
         height: auto;
     }
+    .movie__info--title {
+        font-size: 54px;
+    }
     .info__img--wrapper {
         width: 60%;
     }
@@ -171,7 +175,7 @@
 
 @media (max-width: 600px) {
     .movie__info--title {
-        font-size: 54px;
+        font-size: 48px;
     }
     .info__img--wrapper {
         width: 75%;
@@ -180,7 +184,7 @@
 
 @media (max-width: 420px) {
     .movie__info--title {
-        font-size: 48px;
+        font-size: 42px;
     }
     .info__img--wrapper {
         width: 90%;
