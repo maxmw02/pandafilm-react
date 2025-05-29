@@ -1,0 +1,46 @@
+.skeleton__wrapper {
+    width: 30%;
+    margin-left: 18px;
+    border: 2px solid #c2c2c2;
+    border-radius: 15px;
+    background: linear-gradient(to right, #cccccc, #c2c2c2);
+    box-shadow: 1em 1em 4em #000000;
+}
+
+.skeleton__movie {
+    padding: 12px;
+}
+
+.skeleton__img--wrapper {
+    display: flex;
+    width: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.skeleton__img {
+    width: 100%; 
+    height: 280px;
+    background-color: #b6b6b6;
+}
+
+.skeleton__description {
+    display: flex;
+    flex-direction: column;
+    margin-top: 4px;
+}
+
+.skeleton__title {
+    width: 150px;
+    height: 24px;
+    background-color: #b6b6b6;
+    border-radius: 5px;
+    margin-bottom: 2px;
+}
+
+.skeleton__year {
+    width: 50px;
+    height: 22px;
+    background-color: #b6b6b6;
+    border-radius: 5px;
+}

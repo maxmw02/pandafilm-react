@@ -6,7 +6,7 @@ import Footer from "../../Components/Footer/Footer";
 import Vader from "../../Components/ui/BackgroundStyles/Vader";
 
 
-function Search({ movies, setMovieSearch, fetchMovies }) {
+function Search({ movies, setMovieSearch, fetchMovies, loading }) {
 
   return (
     <div>
@@ -17,7 +17,7 @@ function Search({ movies, setMovieSearch, fetchMovies }) {
           setMovieSearch={setMovieSearch}
           fetchMovies={fetchMovies}
         />
-        <Results movies={movies} fetchMovies={fetchMovies} />
+        <Results movies={movies} fetchMovies={fetchMovies} loading={loading}/>
       </div>
       <Footer />
     </div>

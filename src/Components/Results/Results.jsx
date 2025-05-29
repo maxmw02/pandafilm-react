@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import Movie from "../ui/Movie";
 import "./Results.css";
 
-function Results({ movies, fetchMovies }) {
+function Results({ movies, fetchMovies, loading }) {
   if (!movies || movies.length === 0) {
     return (
       <section id="results">
         <div className="container">
           <div className="row">
             <div className="results__header"></div>
-            <Movie movies={movies} fetchMovies={fetchMovies} />
+            <Movie movies={movies} fetchMovies={fetchMovies} loading={loading}/>
           </div>
         </div>
       </section>
@@ -22,7 +22,7 @@ function Results({ movies, fetchMovies }) {
             <div className="results__header">
               <h3 className="results__title">Search Results</h3>
             </div>
-            <Movie movies={movies} fetchMovies={fetchMovies} />
+            <Movie movies={movies} fetchMovies={fetchMovies} loading={loading}/>
           </div>
         </div>
       </section>
