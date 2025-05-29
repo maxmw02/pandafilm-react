@@ -16,7 +16,7 @@ import Revenant from "../../Components/ui/BackgroundStyles/Revenant";
 import Joker from "../../Components/ui/BackgroundStyles/Joker";
 import Captain from "../../Components/ui/BackgroundStyles/Captain";
 
-function Login() {
+function Login({ setIsLoggedIn }) {
   const [signState, setSignState] = useState("Sign In");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -26,24 +26,44 @@ function Login() {
   const navigate = useNavigate();
 
   const user_auth = async (event) => {
-    event.preventDefault();
-    setLoading(true);
+    event.preventDefault(); // Prevent default form submission behavior (page reload)
+    console.log("user_auth function called. Current signState:", signState);
+    setLoading(true); // Show loading spinner
+
     try {
       if (signState === "Sign In") {
-        await login(email, password);
+        console.log("Attempting to sign in with email:", email);
+        await login(email, password); // Call Firebase login function
+        console.log("Firebase login successful!");
       } else {
-        await signup(name, email, password);
+        // signState === "Sign Up"
+        console.log("Attempting to sign up with name:", name, "email:", email);
+        await signup(name, email, password); // Call Firebase signup function
+        console.log("Firebase signup successful!");
       }
-      // navigate("/")
+
+      // If either login or signup is successful (no error was thrown):
+      console.log("Setting isLoggedIn to true in App.jsx state.");
+      setIsLoggedIn(true); // Update the authentication state in App.jsx
+
+      console.log("Navigating to home page (/).");
+      navigate("/"); // Redirect to the home page
     } catch (error) {
-      console.error("Authentication error:", error);
+      // If an error occurs during Firebase authentication
+      console.error("Authentication error caught in Login.jsx:", error);
+      // Display a user-friendly alert with the Firebase error message
+      alert(error.message || "An unexpected authentication error occurred.");
+    } finally {
+      // This block runs whether try succeeds or catch fails
+      setLoading(false); // Hide loading spinner
+      console.log("user_auth function execution finished.");
     }
-    setLoading(false);
   };
 
   return (
     <div id="login">
       <div className="login__background">
+        {/* Render your background components */}
         <Rocky />
         <Martian />
         <Dune />
@@ -57,16 +77,20 @@ function Login() {
         <Joker />
         <Captain />
       </div>
+
+      {/* Conditional rendering for loading spinner or login form */}
       {loading ? (
         <div className="login__loader">
-          <FontAwesomeIcon icon="spinner" />
+          <FontAwesomeIcon icon="spinner" spin size="2x" />
         </div>
       ) : (
         <div className="login">
           <div className="login__form">
             <h1 className="login__title">{signState}</h1>
-            <form>
-              {signState === "Sign Up" ? (
+            <form onSubmit={user_auth}>
+              {" "}
+              {/* Use onSubmit on the form to trigger user_auth */}
+              {signState === "Sign Up" && ( // Only show name input if signing up
                 <input
                   type="text"
                   placeholder="Your Name"
@@ -74,9 +98,8 @@ function Login() {
                   onChange={(event) => {
                     setName(event.target.value);
                   }}
+                  required // Make name required for signup
                 />
-              ) : (
-                <></>
               )}
               <input
                 type="email"
@@ -85,6 +108,7 @@ function Login() {
                 onChange={(event) => {
                   setEmail(event.target.value);
                 }}
+                required // Make email required
               />
               <input
                 type="password"
@@ -93,18 +117,21 @@ function Login() {
                 onChange={(event) => {
                   setPassword(event.target.value);
                 }}
+                required // Make password required
               />
-              <button type="submit" onClick={user_auth} className="submit">
+              {/* Removed onClick from button since form onSubmit handles it */}
+              <button type="submit" className="submit">
                 {signState}
               </button>
               <div className="form__help">
                 <div className="remember">
-                  <input type="checkbox" />
-                  <label htmlFor="">Remember Me</label>
+                  <input type="checkbox" id="rememberMe" />
+                  <label htmlFor="rememberMe">Remember Me</label>
                 </div>
                 <p>Need Help?</p>
               </div>
             </form>
+
             <div className="form__lower">
               <div className="form__switch">
                 {signState === "Sign In" ? (
@@ -114,6 +141,7 @@ function Login() {
                       onClick={() => {
                         setSignState("Sign Up");
                       }}
+                      className="form__link" // Add a class for styling clickability
                     >
                       Sign Up Now
                     </span>
@@ -125,12 +153,15 @@ function Login() {
                       onClick={() => {
                         setSignState("Sign In");
                       }}
+                      className="form__link" // Add a class for styling clickability
                     >
                       Sign In Now
                     </span>
                   </p>
                 )}
               </div>
+              {/* This link will bypass login, which might be undesirable for protected routes */}
+              {/* Consider removing it or making it go to a public landing page */}
               <a className="home" href="/">
                 Home
               </a>
@@ -143,3 +174,4 @@ function Login() {
 }
 
 export default Login;
+

@@ -1,10 +1,10 @@
 import React from "react";
 import "./Movie.css";
 import undraw from "../../assets/undraw-movie.svg";
-import noImage from "../../assets/No_Image_Available.jpg";
 import { Link } from "react-router-dom";
 
 function Movie({ movies }) {
+
   if (!movies || movies.length === 0) {
     return (
       <div className="search__again">
@@ -19,14 +19,15 @@ function Movie({ movies }) {
           .map((movie) => (
             <Link
               to={`/info/${movie.imdbID}`}
-              className="movie__wrapper"
+              className="movie__wrapper movies__click"
               key={movie.imdbID}
+              
             >
               <div className="movie">
                 <figure className="movie__img--wrapper">
                   <img
                     className="movie__img"
-                    src={movie?.Poster || noImage}
+                    src={movie?.Poster}
                     alt=""
                   />
                 </figure>

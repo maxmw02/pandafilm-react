@@ -13,7 +13,7 @@ function SetMovie({ setHomeMovie, fetchMovieInfo }) {
     );
     const homeMovieData = data.Search;
     setHomeMovies(homeMovieData);
-    console.log(homeMovieData)
+    console.log(homeMovieData);
   }
 
   useEffect(() => {
@@ -24,28 +24,26 @@ function SetMovie({ setHomeMovie, fetchMovieInfo }) {
     <div className="movie__list">
       {homeMovies
         .map((movie) => (
-       
-            <Link 
-              to={`/info/${movie.imdbID}`}
-              className="setMovies__wrapper movies__click"
-              key={movie.imdbID}
-              onClick={fetchMovieInfo}
-            >
-              <div className="movie">
-                <figure className="movie__img--wrapper">
-                  <img
-                    className="movie__img"
-                    src={movie?.Poster || noImage}
-                    alt=""
-                  />
-                </figure>
-                <div className="movie__description">
-                  <div className="movie__title">{movie?.Title}</div>
-                  <div className="movie__year">{movie?.Year}</div>
-                </div>
+          <Link
+            to={`/info/${movie.imdbID}`}
+            className="setMovies__wrapper movies__click"
+            key={movie.imdbID}
+            onClick={fetchMovieInfo}
+          >
+            <div className="movie">
+              <figure className="movie__img--wrapper">
+                <img
+                  className="movie__img"
+                  src={movie?.Poster || noImage}
+                  alt=""
+                />
+              </figure>
+              <div className="movie__description">
+                <div className="movie__title">{movie?.Title}</div>
+                <div className="movie__year">{movie?.Year}</div>
               </div>
-            </Link>
- 
+            </div>
+          </Link>
         ))
         .slice(0, 3)}
     </div>

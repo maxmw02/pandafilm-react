@@ -11,8 +11,14 @@ function Search({ movies, setMovieSearch, fetchMovies }) {
   return (
     <div>
       <Nav />
-      <SearchBar background={<Vader />} setMovieSearch={setMovieSearch} fetchMovies={fetchMovies} />
-      <Results movies={movies} fetchMovies={fetchMovies} />
+      <div className="search__results">
+        <SearchBar
+          background={<Vader />}
+          setMovieSearch={setMovieSearch}
+          fetchMovies={fetchMovies}
+        />
+        <Results movies={movies} fetchMovies={fetchMovies} />
+      </div>
       <Footer />
     </div>
   );

@@ -27,7 +27,6 @@
     width: 100%;
     border-radius: 10px;
     overflow: hidden;
-    
   }
   
   .movie__img {
@@ -52,13 +51,5 @@
     color: #535353;
   }
 
-  .movies__click {
-    cursor: pointer;
-  }
-  .movies__click:hover {
-    transform: scale(1.03);
-  }
-  .movies__click:active {
-    transform: scale(0.99);
-  }
+ 
   

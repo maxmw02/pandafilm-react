@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
 * {
     box-sizing: border-box;
     padding: 0;
@@ -36,6 +38,16 @@
   }
   .click:active {
     transform: scale(0.8);
+  }
+
+  .movies__click {
+    cursor: pointer;
+  }
+  .movies__click:hover {
+    transform: scale(1.03);
+  }
+  .movies__click:active {
+    transform: scale(0.99);
   }
   
   li {
