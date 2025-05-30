@@ -19,17 +19,16 @@ function PrivateRoutes({ isLoggedIn, setIsLoggedIn }) {
   const navigate = useNavigate();
 
   useEffect(() => {
-      const unsubscribe = auth.onAuthStateChanged((user) => {
-        setIsLoggedIn(!!user)
-        
-        if (!user) {
-          navigate("/login");
-        }
-      
-      })
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      setIsLoggedIn(!!user);
 
-      return () => unsubscribe()
-  }, []); 
+      if (!user) {
+        navigate("/login");
+      }
+    });
+
+    return () => unsubscribe();
+  }, []);
 
   return isLoggedIn ? <Outlet /> : null;
 }
@@ -38,10 +37,10 @@ function App() {
   const [movieSearch, setMovieSearch] = useState("");
   const [movies, setMovies] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false); // Authentication state
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
 
   async function fetchMovies() {
-    setLoading(true)
+    setLoading(true);
     try {
       const { data } = await axios.get(
         `https://www.omdbapi.com/?apikey=84eb025a&s=${movieSearch}`
@@ -52,7 +51,7 @@ function App() {
       console.error("Error fetching movies:", error);
       setMovies([]); // Ensure movies is an empty array on error
     }
-    setLoading(false)
+    setLoading(false);
   }
 
   return (
@@ -64,17 +63,16 @@ function App() {
             path="/login"
             element={<Login setIsLoggedIn={setIsLoggedIn} />}
           />
-          <Route index element={<Home />} />
+          <Route index element={<Home setMovieSearch={setMovieSearch} movies={movies} fetchMovies={fetchMovies}/>} />
           <Route path="info/:id" element={<MovieInfo />} />
-
-          {/* Protected Routes Group */}
-          {/* This parent route uses PrivateRoutes as its element. */}
-          {/* If isLoggedIn is false, PrivateRoutes will redirect to /login. */}
-          {/* If isLoggedIn is true, PrivateRoutes will render its <Outlet />, */}
-          {/* which in turn renders the matched child route (Home, Search, MovieInfo). */}
-          <Route element={<PrivateRoutes isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}/>}>
-            {/* Home Page: Renders when path is exactly "/" */}
-            {/* Search Page: Path is relative to the parent path ("/search") */}
+          <Route
+            element={
+              <PrivateRoutes
+                isLoggedIn={isLoggedIn}
+                setIsLoggedIn={setIsLoggedIn}
+              />
+            }
+          >
             <Route
               path="search"
               element={

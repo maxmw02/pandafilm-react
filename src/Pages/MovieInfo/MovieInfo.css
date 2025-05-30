@@ -1,5 +1,5 @@
 #info {
-    height: 75vh;
+    min-height: 75vh;
     background-color: #f8f8f8;
 }
 
@@ -150,9 +150,6 @@
 }
 
 @media (max-width: 840px) {
-    #info {
-        height: auto;
-    }
     .movie__info--title {
         font-size: 54px;
     }

@@ -3,13 +3,54 @@ import Movie from "../ui/Movie";
 import "./Results.css";
 
 function Results({ movies, fetchMovies, loading }) {
+  const [sortType, setSorttype] = useState("");
+
+  const sortMovies = () => {
+    let sortedMovies = [...movies];
+    console.log(
+      "Original movies order:",
+      sortedMovies.map((m) => m.Title + "(" + m.Year + ")").join(",")
+    );
+    if (sortType) {
+      console.log("Sort type selected", sortType);
+
+      if (sortType === "NEWEST_TO_OLDEST") {
+        console.log("sorting by newest first");
+
+        sortedMovies.sort((a, b) => {
+          const yearA = parseInt(a.Year);
+          const yearB = parseInt(b.Year);
+
+          return yearB - yearA;
+        });
+      } else if (sortType === "OLDEST_TO_NEWEST") {
+        console.log("sorting by oldest first");
+
+        sortedMovies.sort((a, b) => {
+          const yearA = parseInt(a.Year);
+          const yearB = parseInt(b.year);
+
+          return yearA - yearB;
+        });
+      }
+      console.log(
+        "Sorted movies order:",
+        sortedMovies.map((m) => m.Title + " (" + m.Year + ")").join(", ")
+      );
+    }
+  };
+
   if (!movies || movies.length === 0) {
     return (
       <section id="results">
         <div className="container">
           <div className="row">
             <div className="results__header"></div>
-            <Movie movies={movies} fetchMovies={fetchMovies} loading={loading}/>
+            <Movie
+              movies={movies}
+              fetchMovies={fetchMovies}
+              loading={loading}
+            />
           </div>
         </div>
       </section>
@@ -21,8 +62,25 @@ function Results({ movies, fetchMovies, loading }) {
           <div className="row">
             <div className="results__header">
               <h3 className="results__title">Search Results</h3>
+              <select
+                className="filter"
+                onChange={(event) => {
+                  setSorttype(event.target.value);
+                  sortMovies();
+                }}
+              >
+                <option value disabled>
+                  Sort
+                </option>
+                <option value="NEWEST_TO_OLDEST">Year, Newest to Oldest</option>
+                <option value="OLDEST_TO_NEWEST">Year, Oldest to Newest</option>
+              </select>
             </div>
-            <Movie movies={movies} fetchMovies={fetchMovies} loading={loading}/>
+            <Movie
+              movies={movies}
+              fetchMovies={fetchMovies}
+              loading={loading}
+            />
           </div>
         </div>
       </section>

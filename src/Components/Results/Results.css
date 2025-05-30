@@ -4,10 +4,19 @@
 
 .results__header {
   display: flex;
-  margin-bottom: 24px;
+  justify-content: space-between;
+  margin-bottom: 32px;
 }
 
 .results__title {
   font-size: 24px;
   font-weight: 700;
+}
+
+.filter {
+  margin-right: 24px;
+  font-size: 18px;
+  font-weight: 500;
+  background-color: #f8f8f8;
+  border-radius: 5px;
 }
