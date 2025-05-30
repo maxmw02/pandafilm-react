@@ -4,7 +4,7 @@ import undraw from "../../assets/undraw-movie.svg";
 import { Link } from "react-router-dom";
 import Skeleton from "./Skeleton";
 
-function Movie({ movies, loading }) {
+function Movie({ movies, sorted, loading }) {
   if (loading) {
     return (
       <div className="movie__list">
@@ -26,6 +26,28 @@ function Movie({ movies, loading }) {
         <h2 className="search__again--title">Try a Search!</h2>
       </div>
     );
+  } else if (sorted.length > 0) {
+    <div className="movie__list">
+      {sorted
+        .map((movie) => (
+          <Link
+            to={`/info/${movie.imdbID}`}
+            className="movie__wrapper movies__click"
+            key={movie.imdbID}
+          >
+            <div className="movie">
+              <figure className="movie__img--wrapper">
+                <img className="movie__img" src={movie?.Poster} alt="" />
+              </figure>
+              <div className="movie__description">
+                <div className="movie__title">{movie?.Title}</div>
+                <div className="movie__year">{movie?.Year}</div>
+              </div>
+            </div>
+          </Link>
+        ))
+        .slice(0, 9)}
+    </div>;
   } else {
     return (
       <div className="movie__list">

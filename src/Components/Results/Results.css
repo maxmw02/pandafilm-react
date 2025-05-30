@@ -1,5 +1,6 @@
 #results {
     background-color: #f8f8f8;
+    min-height: 55vh;
 }
 
 .results__header {

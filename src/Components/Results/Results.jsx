@@ -4,6 +4,7 @@ import "./Results.css";
 
 function Results({ movies, fetchMovies, loading }) {
   const [sortType, setSorttype] = useState("");
+  const [sorted, setSorted] = useState([])
 
   const sortMovies = () => {
     let sortedMovies = [...movies];
@@ -28,15 +29,17 @@ function Results({ movies, fetchMovies, loading }) {
 
         sortedMovies.sort((a, b) => {
           const yearA = parseInt(a.Year);
-          const yearB = parseInt(b.year);
+          const yearB = parseInt(b.Year);
 
           return yearA - yearB;
         });
       }
+      setSorted(sortedMovies)
       console.log(
         "Sorted movies order:",
         sortedMovies.map((m) => m.Title + " (" + m.Year + ")").join(", ")
       );
+      console.log(sortedMovies)
     }
   };
 
@@ -47,8 +50,9 @@ function Results({ movies, fetchMovies, loading }) {
           <div className="row">
             <div className="results__header"></div>
             <Movie
+              sorted={sorted}
               movies={movies}
-              fetchMovies={fetchMovies}
+
               loading={loading}
             />
           </div>
@@ -69,7 +73,7 @@ function Results({ movies, fetchMovies, loading }) {
                   sortMovies();
                 }}
               >
-                <option value disabled>
+                <option value disabled selected>
                   Sort
                 </option>
                 <option value="NEWEST_TO_OLDEST">Year, Newest to Oldest</option>
@@ -77,8 +81,8 @@ function Results({ movies, fetchMovies, loading }) {
               </select>
             </div>
             <Movie
+              sorted={sorted}
               movies={movies}
-              fetchMovies={fetchMovies}
               loading={loading}
             />
           </div>
